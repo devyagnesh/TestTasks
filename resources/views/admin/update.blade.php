@@ -14,32 +14,35 @@
             <h2 class="mb-2 form-title">Update Profile</h2>
             @if (session('error'))
                 <div class="alert alert-danger mb-2">{{ session('error') }}</div>
+            @elseif ($errors->any())
+                <div class="alert alert-danger mb-2">{{ $errors->first() }}</div>
             @endif
-            <form action="{{ route('postUpdateProfile') }}" method="post" autocomplete="off" enctype="multipart/form-data">
+            <form action="{{ route('postUpdateProfile') }}" method="post" autocomplete="off"
+                enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" name="id" value="{{$user->id}}" />
+                <input type="hidden" name="id" value="{{ $user->id }}" />
                 <label for="profilePicture" class="upload-profile-wrapper">
                     <input type="file" name="profilePicture" id="profilePicture" class="input-controller" />
-                    
+
                     @if ($user->profile_picture)
-                        <img src="{{Storage::url($user->profile_picture) }}" alt="" />
-                        @else
+                        <img src="{{ Storage::url($user->profile_picture) }}" alt="" />
+                    @else
                         <h2>?</h2>
                     @endif
                 </label>
 
                 <div class="form-group mt-2">
-                    <input type="text" name="name" id="name" class="input-controller"
-                        placeholder="Your name" value="{{$user->name}}"/>
+                    <input type="text" name="name" id="name" class="input-controller" placeholder="Your name"
+                        value="{{ $user->name }}" />
                 </div>
                 <div class="form-group mt-2">
                     <input type="email" name="email" id="email" class="input-controller"
-                        placeholder="Email address" value="{{$user->email}}"/>
+                        placeholder="Email address" value="{{ $user->email }}" />
                 </div>
 
 
                 <button type="submit" name="signin" id="signin" class="btn btn-form-action">Update Profile</button>
-                
+                <a href="{{route('viewDashboard')}}" class="btn btn-form-action" style="text-align: center;background-color:rgb(249, 44, 119);">Cancel</a>
             </form>
         </div>
     </div>

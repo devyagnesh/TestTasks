@@ -11,6 +11,9 @@
 <body class="antialiased" id="body">
     <div class="wrapper vh100 d-flex align-items-center justify-content-center"
         style="flex-direction: column;gap:.5rem;">
+        <div style="width: 50rem;display:flex;align-items:center;justify-content:flex-end;margin:1rem 0;">
+            <a href="{{route('export')}}" style="padding:1rem; font-size:1.4rem;font-weight:bold;color:rgb(208, 124, 64);background-color:#fff;border:.1rem solid #404040;width:10rem;text-align:center;border-radius:1rem;">Export</a>
+        </div>
         @foreach ($otherUsers as $user)
             <div class="card p2 radius-5 width-40 d-flex align-items-center user-list-card"
                 style="justify-content: flex-start;gap:1rem;">

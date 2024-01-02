@@ -37,5 +37,6 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/delete/{id}',[DashboardController::class,'deleteUser'])->name('deleteUser');
         Route::get('/update/{id}',[DashboardController::class,'viewUpdateProfile'])->name('viewUpdateProfile');
         Route::post('/update',[DashboardController::class,'postUpdateProfile'])->name('postUpdateProfile');
+        Route::get('/export',[DashboardController::class,'Export'])->name('export');
     });
 });

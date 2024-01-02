@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UsersExport;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DashboardController extends Controller
 {
@@ -109,5 +111,9 @@ class DashboardController extends Controller
         } catch (Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
+    }
+
+    public function Export(){
+        return Excel::download(new UsersExport,'data.xlsx');
     }
 }

@@ -14,6 +14,9 @@
             <h2 class="mb-2 form-title">SignUp</h2>
             @if (session('error'))
                 <div class="alert alert-danger mb-2">{{ session('error') }}</div>
+
+                @elseif ($errors->any())
+                <div class="alert alert-danger mb-2">{{ $errors->first() }}</div>
             @endif
             <form action="{{ route('postSignup') }}" method="post" autocomplete="off" enctype="multipart/form-data">
                 @csrf
