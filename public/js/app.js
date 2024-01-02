@@ -56,7 +56,6 @@ function validateForm() {
     const email = selector("#email");
     const password = selector("#password");
     const submitButton = selector("button[type='submit']");
-
     function disableFormSubmission() {
         submitButton.addEventListener("click", (e) => {
             e.preventDefault();
@@ -70,43 +69,45 @@ function validateForm() {
         });
         submitButton.removeAttribute("disabled");
     }
-
-    function isNameValid() {
-        return name.value && name.value.length >= 3;
-    }
-
-    function isEmailValid() {
-        return (
-            email.value &&
-            /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value)
-        );
-    }
-
-    function isPasswordValid() {
-        return !password || (password.value && password.value.length >= 7);
-    }
-
-    function updateFormSubmission() {
-        if (isNameValid() && isEmailValid() && isPasswordValid()) {
-            enableFormSubmission();
-        } else {
-            disableFormSubmission();
+    if ((name && email && submitButton) || password) {
+        function isNameValid() {
+            return name.value && name.value.length >= 3;
         }
+
+        function isEmailValid() {
+            return (
+                email.value &&
+                /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
+                    email.value
+                )
+            );
+        }
+
+        function isPasswordValid() {
+            return !password || (password.value && password.value.length >= 7);
+        }
+
+        function updateFormSubmission() {
+            if (isNameValid() && isEmailValid() && isPasswordValid()) {
+                enableFormSubmission();
+            } else {
+                disableFormSubmission();
+            }
+        }
+
+        name.addEventListener("input", updateFormSubmission);
+        email.addEventListener("input", updateFormSubmission);
+
+        if (password) {
+            password.addEventListener("input", updateFormSubmission);
+        }
+
+        disableFormSubmission();
+        return updateFormSubmission;
     }
-
-    name.addEventListener("input", updateFormSubmission);
-    email.addEventListener("input", updateFormSubmission);
-
-    if (password) {
-        password.addEventListener("input", updateFormSubmission);
-    }
-
-    disableFormSubmission();
-    return updateFormSubmission;
 }
 
-
-function init(){
+function init() {
     dialog();
     validateForm();
 }
