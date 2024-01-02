@@ -51,6 +51,7 @@
         </div>
     </div>
     <script src="https://kit.fontawesome.com/d9739c7805.js" crossorigin="anonymous"></script>
+    <script src="{{asset('js/app.js')}}"></script>
 </body>
 
 </html>

@@ -309,3 +309,7 @@ a{
     font-size: 1.33rem;
 }
 
+button:disabled{
+    background-color: rgb(255, 212, 182);
+    cursor:not-allowed;
+}
